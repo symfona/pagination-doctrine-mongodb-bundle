@@ -42,7 +42,7 @@ jobs:
                     restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
 
             -   name: Run static analyse
-                run: vendor/bin/phpstan analyse
+                run: vendor/bin/phpstan analyse --no-progress
 
     phpunit:
         needs: build
@@ -65,7 +65,7 @@ jobs:
                     restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
 
             -   name: Run tests
-                run: vendor/bin/phpunit --testdox --coverage-clover=coverage.xml
+                run: vendor/bin/phpunit tests --testdox --coverage-clover=coverage.xml
 
             -   name: Send code coverage report to codecov.io
                 env:

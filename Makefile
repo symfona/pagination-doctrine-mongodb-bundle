@@ -5,7 +5,7 @@ phpunit: clear-cache
 	docker-compose run --rm -T php /usr/local/bin/php /app/vendor/bin/phpunit tests
 
 phpstan: clear-cache
-	docker-compose run --rm -T php /usr/local/bin/php /app/vendor/bin/phpstan analyse
+	docker-compose run --rm -T php /usr/local/bin/php /app/vendor/bin/phpstan analyse --no-progress
 
 coverage: clear-cache
 	docker-compose run --rm -T php /usr/local/bin/php /app/vendor/bin/phpunit tests --coverage-html=vendor/coverage
