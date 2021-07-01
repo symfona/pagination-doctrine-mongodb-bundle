@@ -1,14 +1,11 @@
-clear-cache:
-	rm -rf var
+phpunit:
+	docker-compose run --rm -T php /usr/local/bin/php /app/vendor/bin/phpunit
 
-phpunit: clear-cache
-	docker-compose run --rm -T php /usr/local/bin/php /app/vendor/bin/phpunit tests
-
-phpstan: clear-cache
+phpstan:
 	docker-compose run --rm -T php /usr/local/bin/php /app/vendor/bin/phpstan analyse --no-progress
 
-coverage: clear-cache
-	docker-compose run --rm -T php /usr/local/bin/php /app/vendor/bin/phpunit tests --coverage-html=vendor/coverage
+coverage:
+	docker-compose run --rm -T php /usr/local/bin/php /app/vendor/bin/phpunit --coverage-html=vendor/coverage
 
 composer-update:
 	docker-compose run --rm -T php /usr/local/bin/php /usr/local/bin/composer update
