@@ -1,0 +1,73 @@
+name: CI
+
+on:
+    pull_request:
+    push:
+        branches:
+            - master
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        strategy: { matrix: { php-version: ['8.0'] } }
+        steps:
+            -   uses: actions/checkout@v2
+
+            -   name: Validate composer.json and composer.lock
+                run: composer validate
+
+            -   name: Cache composer packages
+                uses: actions/cache@v2
+                with:
+                    path: vendor
+                    key: ${{ runner.os }}-${{ matrix.php-version }}-composer-${{ hashFiles('composer.json') }}
+                    restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
+
+            -   name: Install dependencies
+                if: steps.composer-cache.outputs.cache-hit != 'true'
+                run: composer install --prefer-dist --no-progress
+
+    phpstan:
+        needs: build
+        runs-on: ubuntu-latest
+        strategy: { matrix: { os: [ubuntu-latest], php-version: ['8.0'] } }
+        steps:
+            -   uses: actions/checkout@v2
+
+            -   name: Cache composer packages
+                uses: actions/cache@v2
+                with:
+                    path: vendor
+                    key: ${{ runner.os }}-${{ matrix.php-version }}-composer-${{ hashFiles('composer.json') }}
+                    restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
+
+            -   name: Run static analyse
+                run: vendor/bin/phpstan analyse
+
+    phpunit:
+        needs: build
+        runs-on: ubuntu-latest
+        strategy: { matrix: { php-version: ['8.0'] } }
+        steps:
+            -   name: Setup PHP with Xdebug
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php-version }}
+                    coverage: coverage
+
+            -   uses: actions/checkout@v2
+
+            -   name: Cache composer packages
+                uses: actions/cache@v2
+                with:
+                    path: vendor
+                    key: ${{ runner.os }}-${{ matrix.php-version }}-composer-${{ hashFiles('composer.json') }}
+                    restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
+
+            -   name: Run tests
+                run: vendor/bin/phpunit --testdox --coverage-clover=coverage.xml
+
+            -   name: Send code coverage report to codecov.io
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+                run: bash <(curl -s https://codecov.io/bash) || true
