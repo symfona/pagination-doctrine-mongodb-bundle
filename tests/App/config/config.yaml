@@ -1,0 +1,8 @@
+framework:
+    test: ~
+    secret: test
+
+services:
+    Symfona\DemoBundle\Tests\App\Controller\:
+        resource: '../Controller'
+        tags: ['controller.service_arguments']
