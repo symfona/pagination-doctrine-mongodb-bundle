@@ -10,7 +10,10 @@ final class Kernel extends \Symfony\Component\HttpKernel\Kernel
 {
     use MicroKernelTrait;
 
-    public function registerBundles(): \Generator
+    /**
+     * {@inheritdoc}
+     */
+    public function registerBundles(): iterable
     {
         yield new \Symfony\Bundle\FrameworkBundle\FrameworkBundle();
         yield new \Symfona\DemoBundle\DemoBundle();
