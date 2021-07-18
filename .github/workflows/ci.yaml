@@ -70,6 +70,8 @@ jobs:
                     restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
 
             -   name: Run tests
+                env:
+                    MONGODB_URL: mongodb://localhost:27017/test
                 run: vendor/bin/phpunit --testdox --coverage-clover=coverage.xml
 
             -   name: Send code coverage report to codecov.io
