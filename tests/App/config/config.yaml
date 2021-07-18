@@ -5,7 +5,7 @@ framework:
 doctrine_mongodb:
     connections:
         default:
-            server: 'mongodb://mongodb:27017'
+            server: '%env(resolve:MONGODB_URL)%'
             options: { }
     default_database: test_database
     document_managers:
