@@ -15,7 +15,7 @@ doctrine_mongodb:
                 AdapterBundle:
                     is_bundle: false
                     type: annotation
-                    dir: '/app/tests/App/Document'
+                    dir: 'tests/App/Document'
                     prefix: 'Symfona\Pagination\Doctrine\MongoDB\AdapterBundle\Tests\App\Document'
 
 services:
