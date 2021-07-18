@@ -2,7 +2,23 @@ framework:
     test: ~
     secret: test
 
+doctrine_mongodb:
+    connections:
+        default:
+            server: 'mongodb://mongodb:27017'
+            options: { }
+    default_database: test_database
+    document_managers:
+        default:
+            auto_mapping: true
+            mappings:
+                AdapterBundle:
+                    is_bundle: false
+                    type: annotation
+                    dir: '/app/tests/App/Document'
+                    prefix: 'Symfona\Pagination\Doctrine\MongoDB\AdapterBundle\Tests\App\Document'
+
 services:
-    Symfona\DemoBundle\Tests\App\Controller\:
-        resource: '../Controller'
-        tags: ['controller.service_arguments']
+    Symfona\Pagination\Paginator:
+        public: true
+        autowire: true

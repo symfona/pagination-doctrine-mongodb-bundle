@@ -1,9 +1,9 @@
 {
-  "name": "symfona/demo-bundle",
+  "name": "symfona/pagination-doctrine-mongodb-bundle",
   "type": "symfony-bundle",
-  "description": "Symfony Bundle Template",
-  "keywords": ["php", "symfony", "bundle", "demo", "template"],
-  "homepage": "https://github.com/symfona/demo-bundle",
+  "description": "Pagination Doctrine MongoDB Bundle",
+  "keywords": ["php", "symfony", "pagination", "doctrine", "mongodb", "odm", "bundle"],
+  "homepage": "https://github.com/symfona/pagination-doctrine-mongodb-bundle",
   "license": "MIT",
   "authors": [
     {
@@ -13,22 +13,23 @@
   ],
   "require": {
     "php": "^8.0",
+    "doctrine/mongodb-odm-bundle": "^4.3",
+    "symfona/pagination-bundle": "^1.0",
     "symfony/framework-bundle": "^5.3"
   },
   "require-dev": {
     "phpstan/phpstan": "^0.12",
     "phpunit/phpunit": "^9.5",
-    "symfony/browser-kit": "^5.3",
     "symfony/yaml": "^5.3"
   },
   "autoload": {
     "psr-4": {
-      "Symfona\\DemoBundle\\": "src"
+      "Symfona\\Pagination\\Doctrine\\MongoDB\\AdapterBundle\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Symfona\\DemoBundle\\Tests\\": "tests"
+      "Symfona\\Pagination\\Doctrine\\MongoDB\\AdapterBundle\\Tests\\": "tests"
     }
   },
   "config": {

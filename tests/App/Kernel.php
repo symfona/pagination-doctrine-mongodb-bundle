@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Symfona\DemoBundle\Tests\App;
+namespace Symfona\Pagination\Doctrine\MongoDB\AdapterBundle\Tests\App;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -13,7 +13,9 @@ final class Kernel extends \Symfony\Component\HttpKernel\Kernel
     public function registerBundles(): iterable
     {
         yield new \Symfony\Bundle\FrameworkBundle\FrameworkBundle();
-        yield new \Symfona\DemoBundle\DemoBundle();
+        yield new \Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle();
+        yield new \Symfona\PaginationBundle\PaginationBundle();
+        yield new \Symfona\Pagination\Doctrine\MongoDB\AdapterBundle\AdapterBundle();
     }
 
     protected function configureContainer(ContainerConfigurator $container): void
@@ -23,6 +25,5 @@ final class Kernel extends \Symfony\Component\HttpKernel\Kernel
 
     protected function configureRoutes(RoutingConfigurator $routes): void
     {
-        $routes->import('config/routes.yaml');
     }
 }
