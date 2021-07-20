@@ -13,7 +13,7 @@ final class BuilderAdapter extends AbstractAdapter
         'allowDiskUse' => true,
     ];
 
-    public function __construct(protected Builder $builder)
+    public function __construct(private Builder $builder)
     {
     }
 
@@ -48,7 +48,9 @@ final class BuilderAdapter extends AbstractAdapter
 
     protected function getCount(): int
     {
-        return (int) ((clone $this->builder)->count('count')->getAggregation(self::OPTIONS)->getIterator()->current()['count'] ?? 0);
+        $builder = clone $this->builder;
+
+        return (int) ($builder->count('count')->getAggregation(self::OPTIONS)->getIterator()->current()['count'] ?? 0);
     }
 
     protected function getItems(): Iterator

@@ -5,10 +5,10 @@ namespace Symfona\Pagination\Doctrine\MongoDB\AdapterBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-final class PaginationMongoDBAdapterBundle extends Bundle
+final class AdapterBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
     {
-        $container->addCompilerPass(new DependencyInjection\PaginationMongoDBAdapterPass());
+        $container->addCompilerPass(new DependencyInjection\AdapterPass());
     }
 }

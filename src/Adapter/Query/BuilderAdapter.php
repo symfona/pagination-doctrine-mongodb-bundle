@@ -9,7 +9,7 @@ use Symfona\Pagination\Query;
 
 final class BuilderAdapter extends AbstractAdapter
 {
-    public function __construct(protected Builder $builder)
+    public function __construct(private Builder $builder)
     {
     }
 

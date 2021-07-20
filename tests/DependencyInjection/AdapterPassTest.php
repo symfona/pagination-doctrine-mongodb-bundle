@@ -6,14 +6,14 @@ use PHPUnit\Framework\TestCase;
 use Symfona\Pagination\Doctrine\MongoDB\AdapterBundle\Tests\App\Kernel;
 use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 
-final class PaginationMongoDBAdapterPassTest extends TestCase
+final class AdapterPassTest extends TestCase
 {
     public function testProcess(): void
     {
         $kernel = new Kernel('prod', false);
         $kernel->boot();
 
-        self::assertArrayHasKey('PaginationMongoDBAdapterBundle', $kernel->getBundles());
+        self::assertArrayHasKey('AdapterBundle', $kernel->getBundles());
     }
 
     public function testInvalidProcess(): void
