@@ -3,17 +3,17 @@
 namespace Symfona\Pagination\Doctrine\MongoDB\AdapterBundle\Tests\DependencyInjection;
 
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 use Symfona\Pagination\Doctrine\MongoDB\AdapterBundle\Tests\App\Kernel;
+use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 
-final class AdapterPassTest extends TestCase
+final class PaginationMongoDBAdapterPassTest extends TestCase
 {
     public function testProcess(): void
     {
         $kernel = new Kernel('prod', false);
         $kernel->boot();
 
-        self::assertArrayHasKey('AdapterBundle', $kernel->getBundles());
+        self::assertArrayHasKey('PaginationMongoDBAdapterBundle', $kernel->getBundles());
     }
 
     public function testInvalidProcess(): void

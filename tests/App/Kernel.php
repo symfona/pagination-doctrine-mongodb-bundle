@@ -14,7 +14,7 @@ final class Kernel extends \Symfony\Component\HttpKernel\Kernel
     {
         yield new \Symfony\Bundle\FrameworkBundle\FrameworkBundle();
         yield new \Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle();
-        yield new \Symfona\Pagination\Doctrine\MongoDB\AdapterBundle\AdapterBundle();
+        yield new \Symfona\Pagination\Doctrine\MongoDB\AdapterBundle\PaginationMongoDBAdapterBundle();
 
         if ('exclude_pagination' !== $this->getEnvironment()) {
             yield new \Symfona\PaginationBundle\PaginationBundle();

@@ -8,7 +8,7 @@ use Symfona\Pagination\Doctrine\MongoDB\AdapterBundle\Adapter;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-final class AdapterPass implements CompilerPassInterface
+final class PaginationMongoDBAdapterPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
