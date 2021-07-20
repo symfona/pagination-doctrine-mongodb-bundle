@@ -14,7 +14,7 @@
   "require": {
     "php": "^8.0",
     "doctrine/mongodb-odm-bundle": "^4.3",
-    "symfona/pagination-bundle": "^1.0",
+    "symfona/pagination-bundle": "^2.0",
     "symfony/framework-bundle": "^5.3"
   },
   "require-dev": {
